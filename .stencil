@@ -1,0 +1,22 @@
+{
+  "normalStoreUrl": "https://ferrell-store.mybigcommerce.com",
+  "port": 3000,
+  "customLayouts": {
+    "brand": {},
+    "category": {},
+    "page": {
+      "shopping-lists.html": "/shopping-lists/",
+      "shopping-list.html": "/shopping-list/",
+      "user-management.html": "/user-management/",
+      "order-detail.html": "/orderdetail/",
+      "company-register2.html": "/trade-professional-application/",
+      "salerep.html": "/salerep/",
+      "quick-order-pad.html": "/quick-order-pad/",
+      "dashboard.html": "/dashboard/",
+      "b2b-search.html": "/b2b-search/"
+    },
+    "product": {}
+  },
+  "clientId": "qg45n87v8jbyn993aac41kouhkzkmfh",
+  "accessToken": "qkd9b74wwqtg71grvyzt5lsu8a3pwvw"
+}
