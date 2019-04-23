@@ -34,7 +34,7 @@
     "grunt-svgstore": "^0.5.0",
     "html5-history-api": "^4.2.7",
     "jasmine-core": "^2.2.0",
-    "jquery": "^2.2.1",
+    "jquery": "^3.4.0",
     "jquery-zoom": "^1.7.15",
     "jstree": "vakata/jstree",
     "karma": "^0.13.22",
