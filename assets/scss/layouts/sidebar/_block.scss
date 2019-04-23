@@ -1,0 +1,24 @@
+// =============================================================================
+// SIDEBAR BLOCKS (CSS)
+// =============================================================================
+
+
+// Block
+// -----------------------------------------------------------------------------
+
+.sidebarBlock {
+
+    + .sidebarBlock {
+        border-top: container("border");
+        margin-top: spacing("single") + spacing("third");
+        padding-top: spacing("single") + spacing("third");
+    }
+}
+
+.sidebarBlock-heading {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+}

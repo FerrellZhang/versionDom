@@ -1,0 +1,8 @@
+<div class="body {{#if template '===' 'pages/home'}} body-home{{/if}}">
+    {{#block "hero"}} {{/block}}
+    {{#block "full"}} {{/block}}
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{> components/common/modal}}
+</div>

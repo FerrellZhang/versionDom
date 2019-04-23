@@ -1,0 +1,173 @@
+{{#partial "page"}}
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.9.3/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script>
+<style>
+input
+{
+  border:none;
+}
+</style>
+<main class="page">
+  <h1 class="page-heading"><span>B2B Checkout</span></h1>
+  <h4><a href="/manager/#requisitions">B2B Manager</a> / Checkout</h4>
+  <form action="/b2bcomfirmation/">
+    <input name="orderId" type="text" hidden />
+    <input name="items" type="text" hidden />
+    <div id="content" class="py-5">
+        <div class="container">
+          <h4>
+            Billing Address
+          </h4>
+          <div class="mb-4 bg-faded p-3 rounded mb-4" id="billing">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">First Name</label>
+                <input name="bill-first-name" type="text" class="form-control" placeholder="First Name" value="ray">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Last Name</label>
+                <input name="bill-last-name" type="text" class="form-control" placeholder="Last Name" value="zhang">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Phone</label>
+                <input name="bill-phone" type="tel" class="form-control" placeholder="Phone" value="111-111-1111">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Email</label>
+                <input name="bill-email" type="email" class="form-control" placeholder="Email" value="ray.zhang@silksoftware.com">
+              </div>
+              <div class="col-md-6 mb-3">
+                <input name="bill-address" type="text" class="form-control" placeholder="Address line" value="laguna Road">
+              </div>
+              <div class="col-md-6 mb-3">
+                <input name="bill-state" type="text" class="form-control" placeholder="State" value="California">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">City</label>
+                <input name="bill-city" type="text" class="form-control" placeholder="City" value="Irvine">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label class="sr-only">Post Code</label>
+                <input name="bill-zipcode" type="text" class="form-control" placeholder="Post Code" value="92618">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label class="sr-only">Country</label>
+                <select name="bill-country" class="form-control">
+                  <option value="Country">Country</option>
+                  <option value="United States" selected="selected">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="France">France</option>
+                  <option value="UK">UK</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Belgium">Belgium</option>
+                  <option value="Australia">Australia</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" data-toggle="collapse" data-target="#shipping" aria-expanded="false" aria-controls="shipping">
+                <input id="differect_box" name="different" class="form-check-input" type="checkbox" value="ship-address-alt">
+                Ship to different address
+              </label>
+            </div>
+          </div>
+          <!-- Shipping form -->
+          <div class="collapse" id="shipping">
+            <h4>
+              Shipping Address
+            </h4>
+            <div class="bg-faded p-3 mb-4 rounded">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">First Name</label>
+                  <input name="ship-first-name" type="text" class="form-control" placeholder="First Name">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Last Name</label>
+                  <input name="ship-last-name" type="text" class="form-control" placeholder="Last Name">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input name="ship-address" type="text" class="form-control" placeholder="Address line">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input name="ship-state" type="text" class="form-control" placeholder="State">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">City</label>
+                  <input name="ship-city" type="text" class="form-control" placeholder="City">
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label class="sr-only">Post Code</label>
+                  <input name="ship-zipcode" type="text" class="form-control" placeholder="Post Code">
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label class="sr-only">Country</label>
+                  <select name="ship-country" class="form-control">
+                    <option value="Country">Country</option>
+                    <option value="volvo">United States</option>
+                    <option value="United States">Canada</option>
+                    <option value="France">France</option>
+                    <option value="UK">UK</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Australia">Australia</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Summary -->
+          <h4>
+            Cart Summary
+          </h4>
+          <table id="b2bcheckout_table" class="table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="b2bcheckout_tbody">
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-md-12 text-md-right mt-3 mt-md-0">
+              <div>
+                <h4 class="font-weight-light" id="subtotal"></h4>
+                <h4 class="font-weight-light" id="discount"></h4>
+                <h4 class="font-weight-light" id="tax"></h4>
+                <h4 class="font-weight-light" id="ship_fee"></h4>
+                <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0">
+                <h4 id="total"></h4>
+                <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0">
+              </div>
+            </div>
+            <div class="col-md-12 text-md-right mt-3 mt-md-0">
+              <button id="back" type="button" class="btn btn-outline-primary btn-rounded btn-lg">Back to Cart</button>
+              <button id="pay" class="btn btn-primary btn-rounded btn-lg">Make Payment</button>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+      <!-- payment UI -->
+      <div hidden>
+          <script id="checkout"
+              src="https://checkout.stripe.com/checkout.js"
+              class="stripe-button"
+              data-key="pk_test_LpM2TXbXs8xctw1BTIKxhi3x"
+              data-locale="auto">
+          </script>
+      </div>
+  </form>
+</main>
+
+{{/partial}} {{> layout/base}}

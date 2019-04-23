@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{ getFontsCollection }}
+        <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{{snippet 'htmlhead'}}}
+    </head>
+    <body>
+        {{{snippet 'header'}}}
+        <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+
+        {{#if settings.privacy_cookie}}
+            {{> components/common/cookie}}
+        {{/if}}
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+        <script>
+            // Exported in app.js
+             var stencilJs = window.stencilBootstrap("{{template}}", {{jsContext}});
+             stencilJs.load();
+             window.$ = function($){
+                 return stencilJs.jq()($);
+             };
+//          console.log($('header').html());
+            {{#if page.title '==' 'manager'}}
+                stencilJs.manage()();
+            {{/if}}
+
+            {{#if page.title '==' 'b2bcart'}}
+                stencilJs.b2bcart()();
+            {{/if}}
+
+            {{#if page.title '==' 'b2bcheckout'}}
+                stencilJs.b2bcheckout()();
+            {{/if}}
+
+            {{#if page.title '==' 'b2bconfirmation'}}
+                stencilJs.b2bconfirmation()();
+            {{/if}}
+
+            {{#if page.title '==' 'b2bportal'}}
+                stencilJs.b2bportal()();
+            {{/if}}
+
+            {{#if page.title '==' 'orderrequests'}}
+                stencilJs.orderrequests()();
+            {{/if}}
+
+            {{#if page.title '==' 'request'}}
+                stencilJs.request()();
+            {{/if}}
+
+        </script>
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+    </body>
+</html>

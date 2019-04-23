@@ -1,0 +1,215 @@
+// HERO CAROUSEL
+// -----------------------------------------------------------------------------
+//
+// Purpose: Styles the hero carousel component, which basically adds extras to the
+// vendor slick carousel, to specifically display hero images.
+//
+// 1. Hide the actual image element to allow background-size: cover treatment on
+//    large screens to scale image. Use visibility because the JS uses the height
+//    to set the slide size.
+//
+// 2. With JS on, minimise the jump in content as you progressively enhance the
+//    slider. Slowly fade and slide the height, instead of a jump in collapsing
+//    hidden content.
+//
+// 3. Visually overrides the top margin for '.body' defined in _body.scss.
+//    The '.body' top margin creates space between the header and page content.
+//    However, on the homepage, we want the carousel to be flush with the header.
+//
+// 4. Allows image to scale on large screens while preventing the top and bottom
+//    from becoming cut off.
+// -----------------------------------------------------------------------------
+
+.heroCarousel {
+    margin-bottom: 35px;
+    margin-top: -(spacing("single")); // 3
+
+    @include breakpoint("medium") {
+        margin-top: -(spacing("single") + spacing("base")); // 3
+    }
+
+    .js & { // 2
+        max-height: remCalc(0);
+        opacity: 0;
+        overflow: hidden;
+        transition: all 600ms ease-out;
+    }
+
+    &.slick-initialized { // 2
+        max-height: remCalc(1000);
+        opacity: 1;
+    }
+
+    .slick-next,
+    .slick-prev {
+        visibility: hidden;
+        top: 20%;
+
+        @include breakpoint("medium") {
+            top: 50%;
+        }
+    }
+
+    .slick-next {
+        right: 15px;
+
+        @include breakpoint("medium") {
+            right: 25px;
+        }
+    }
+
+    .slick-prev {
+        left: 15px;
+
+        @include breakpoint("medium") {
+            left: 25px;
+        }
+    }
+
+    .slick-dots {
+        bottom: spacing("third");
+        max-width: layout("max") + ($container-padding * 2);
+        padding: 0 $container-padding;
+        text-align: right;
+
+        @include breakpoint("medium") {
+            bottom: spacing("single");
+            
+        }
+
+        @include breakpoint("large") {
+            bottom: 300px;
+        }
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        li {
+            //@include carouselOpaqueBackgrounds($slick-dot-bgColor);
+            background-color: transparent;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+
+            button {
+                border-radius: 0;
+                border: none;
+
+                &:before {
+                    border-radius: 0;
+                    border: 2px solid #fff;
+                    height: 10px;
+                    width: 10px;
+                    top: 3px;
+                    left: 3px;
+                    opacity: 1;
+                }
+
+            }
+
+            &.slick-active {
+                button {
+                    background-color: #fff;
+                }
+            }
+        }
+        
+    }
+}
+
+.heroCarousel-slide {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.heroCarousel-slide--stretch {
+    @include breakpoint("large") { // 4
+        background-size: 100% 100%;
+    }
+}
+
+.heroCarousel-image {
+    @include breakpoint("medium") { // 1
+        visibility: hidden;
+    }
+}
+
+.heroCarousel-content {
+    background-color: rgba($carousel-bgColor, 1);
+    padding: spacing("single");
+    text-align: center;
+
+    @include breakpoint("medium") {
+        @include carouselOpaqueBackgrounds;
+        background-color: rgba($carousel-bgColor, 0.9);
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+        right: 0;
+        //top: 50%;
+        //transform: translateY(-50%);
+        //width: remCalc(700px);
+
+        bottom: 0;
+
+        &.heroCarousel-content--empty {
+            background-color: transparent;
+        }
+    }
+}
+
+.heroCarousel-content-inner {
+
+    @include breakpoint("medium") {
+        float: right;
+        display: inline-block;
+        text-align: left;
+        max-width: 65%;
+    }
+    
+
+}
+.heroCarousel-title {
+    color: $carousel-title-color;
+    font-size: fontSize("small");
+    margin-top: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+
+    @include breakpoint("medium") {
+        font-size: fontSize("hero");
+    }
+    @include breakpoint("large") {
+        font-size: 55px; //71
+        font-weight: 900;
+
+    }
+}
+
+.heroCarousel-description {
+    color: $carousel-description-color;
+    font-size: fontSize("tiny");
+
+    @include breakpoint("small") {
+        font-size: fontSize("smallest");
+    }
+
+    @include breakpoint("medium") {
+        font-size: fontSize("smaller");
+    }
+    @include breakpoint("large") {
+        font-size: 26px;
+    }
+}
+
+.heroCarousel-action {
+    margin: 0 0 1.5rem;
+
+    @include breakpoint("medium") {
+        //margin-top: spacing("single");
+    }
+}

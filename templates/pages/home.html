@@ -1,0 +1,95 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel}}
+    {{/if}}
+    {{{snippet 'home_content'}}}
+{{/partial}}
+
+{{#partial "full"}}
+
+    {{#each shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+<div class="container">
+    {{#if products.featured}}
+        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+    {{/if}}
+
+    {{#if products.top_sellers}}
+        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+    {{/if}}
+
+    {{#if products.new}}
+        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+    {{/if}}
+
+
+
+</div>
+
+<!-- <div class="featured-banner">
+    <img class="__mce_add_custom__" title="featured-banner.jpg" src="https://store-br51rdu2of.mybigcommerce.com/product_images/uploaded_images/featured-banner.jpg" alt="featured-banner.jpg" width="1412" height="568" />
+
+    <div class="featured-banner-inner">
+        <div class="container">
+            <div class="featured-banner-content">
+                <h3>Featured Product</h3>
+                <p>Rupitatque voluptatiis ero eaquidenihil maio des eum. Uptatiis ero eaquidenihil maio des eum everciliqui upitatque voluptatiis ero eaquidenihil maio des eum ever...</p>
+                <a href="/" class="button-bg-red">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+
+</div> -->
+<!-- <div class="checkout-banner">
+    <h2 class="page-heading"><span>Check Us Out</span></h2>
+        <ul class="checkoutList">
+            <li>
+                <div class="checkoutList-wrap">
+                    <img class="__mce_add_custom__" title="yosar-2.png" src="https://store-br51rdu2of.mybigcommerce.com/product_images/uploaded_images/yosar-2.png" alt="yosar-2.png" />
+                    <div class="checkoutList-content">
+                        <h3>TRAINING &amp; EDUCATION</h3>
+                        <p>Quis aut etus ut ut et as alitis quam, cons-equi tet posamenist at asi nobissundae...</p>
+                        <a href="" class="button-bg-red">Enroll Today</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="checkoutList-wrap">
+                    <img class="__mce_add_custom__" title="1392026690-rescue.png" src="https://store-br51rdu2of.mybigcommerce.com/product_images/uploaded_images/1392026690-rescue.png" alt="1392026690-rescue.png" />
+                    <div class="checkoutList-content">
+                        <h3>EMS WEEK CELEBRATION VIDEO</h3>
+                        <p>Quis aut etus ut ut et as alitis quam, cons-equi tet posamenist at asi nobissundae...</p>
+                        <a href="" class="button-bg-white">Watch Now</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="checkoutList-wrap">
+                    <img class="__mce_add_custom__" title="colleague-istat.png" src="https://store-br51rdu2of.mybigcommerce.com/product_images/uploaded_images/colleague-istat.png" alt="colleague-istat.png" />
+                    <div class="checkoutList-content">
+                        <h3>#SEEQUIP</h3>
+                        <p>Quis aut etus ut ut et as alitis quam, cons-equi tet posamenist at asi nobissundae...</p>
+                        <a href="" class="button-bg-red">Learn More</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</div> -->
+{{/partial}}
+{{> layout/base}}

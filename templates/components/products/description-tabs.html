@@ -1,0 +1,54 @@
+<ul class="tabs" data-tab>
+    <li class="tab is-active">
+        <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+    </li>
+    <li class="tab">
+        <a class="tab-title" href="#tab-specs">specs</a>
+    </li>
+    <li class="tab">
+        <a class="tab-title" href="#tab-reviews">reviews</a>
+    </li>
+    {{#if product.warranty}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+</ul>
+<div class="tabs-contents">
+    <div class="tab-content is-active" id="tab-description">
+        {{{product.description}}}
+        {{{snippet 'product_description'}}}
+    </div>
+    <div class="tab-content" id="tab-specs">
+        <div class="customFields">
+            <ul>
+                {{#each product.custom_fields}}
+                {{#if name '==' 'Manufacturer'}}
+
+                {{else if name '==' 'Manufacturer Number'}}
+
+                {{else if name '==' 'item'}}
+
+                {{else if name '==' 'item'}}
+
+                {{else}}
+                <li class="customList">
+                    <span class="customName">{{name}} :</span>
+                    <span class="customValue">{{value}}</span>
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content" id="tab-reviews">
+        {{#if settings.show_product_reviews}}
+        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/if}}
+    </div>
+   {{#if product.warranty}}
+       <div class="tab-content" id="tab-warranty">
+           {{{product.warranty}}}
+       </div>
+   {{/if}}
+</div>

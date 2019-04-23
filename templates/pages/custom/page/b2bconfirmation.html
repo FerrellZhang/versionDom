@@ -1,0 +1,21 @@
+{{#partial "page"}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.9.3/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script>
+
+
+<i class="fa fa-check-circle icon-6x text-success"></i>
+<div id="content" class="py-5">
+  <div class="container">
+    <div class="text-center mb-6">
+      <img src= {{cdn 'img/success.png'}} style="width:20%">
+      <h3>Your order has been successfully placed!</h3>
+      <h4 class="font-weight-normal">Your BigCommerce order number is:<a id="ordernumber"></a></h4>
+      <p>A confirmation email has been sent to your email address: <span id="emailaddress"></span></p>
+    </div>
+  </div>
+</div>
+
+  {{/partial}} {{> layout/base}}

@@ -1,0 +1,119 @@
+// =============================================================================
+// TYPE (CSS)
+// =============================================================================
+
+// Stencil type component additions
+// -----------------------------------------------------------------------------
+
+
+body {
+    font-size: $body-fontSize;
+    font-weight: $body-font-weight;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: $header-font-weight;
+    margin-top: $heading-marginTop;
+}
+
+h5,
+h6 {
+    text-transform: $heading-textTransform;
+}
+
+a {
+    transition: $anchor-transition;
+}
+
+cite {
+    line-height: $blockquote-cite-lineHeight;
+    margin: $blockquote-cite-margin;
+}
+
+.page-heading {
+    position: relative;
+    margin: 0 auto 35px;
+    text-align: center;
+    text-transform: uppercase;
+    color: stencilColor("color-red");
+    font-weight: 800;
+
+    @include breakpoint("large") {
+        font-size: 38px;
+    }
+
+    .body-home & {
+        max-width: 1180px;
+    }
+
+
+    &:before {
+        
+        @include breakpoint("xsmall") {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 50%;
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            border: 2px solid stencilColor("color-red");
+            z-index: -1;
+        }
+    }
+
+    span {
+        display: inline-block;
+        
+
+        @include breakpoint("xsmall") { 
+            background-color: #fff;
+            padding: 0 50px;
+        }
+
+    }
+}
+
+h1 {
+    font-size: $h1-font-size;
+}
+
+h2 {
+    font-size: $h2-font-size;
+}
+
+h3 {
+    font-size: $h3-font-size;
+}
+
+h4 {
+    font-size: $h4-font-size;
+}
+
+h5 {
+    font-size: $h5-font-size;
+}
+
+h6 {
+    font-size: $h6-font-size;
+}
+
+.definitionList {
+    @include clearfix;
+}
+
+.definitionList-key {
+    color: stencilColor("color-textSecondary");
+    float: left;
+    font-weight: fontWeight("normal");
+    margin: 0 spacing("quarter") 0 0;
+}
+
+.definitionList-value {
+    margin: 0;
+}

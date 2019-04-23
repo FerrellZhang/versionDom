@@ -1,0 +1,165 @@
+{{#partial "page"}}
+<!DOCTYPE html>
+<html>
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script> -->
+<style>
+  /*.body .container {
+      width: 70%;
+      max-width: 100%;
+  }*/
+  .block_top {
+    margin-top: 20px;
+    padding: 50px 50px 0px 50px;
+  }
+
+  .switch1 {
+    font-style: italic;
+    color: #898989;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid #898989;
+  }
+
+  .switch2 {
+    background-color: #F7941E;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid #898989;
+  }
+
+  .text2 {
+    float: right;
+    margin: 10px 20px;
+    font-size: 18px;
+  }
+
+  .text2_focus {
+    float: right;
+    margin: 10px 20px;
+    font-size: 18px;
+    text-decoration: underline;
+  }
+
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+
+  .block {
+    padding: 50px;
+  }
+
+  .block thead {
+    background-color: #F7941E;
+    color: white;
+  }
+
+  .table {
+    border-bottom: 3px solid #F7941E;
+  }
+
+  .table tr td {
+    border: none !important;
+  }
+
+  .text1 {
+    margin-left: 10px;
+  }
+
+  .save_button {
+    float: left;
+    padding: 10px 30px;
+    font-size: middle;
+    font-weight: bold;
+    color: White;
+    border: 3px solid #F7941E;
+    background-color: #F7941E;
+    width: fit-content;
+    margin-right: 20px;
+  }
+
+  .cancel_button {
+    float: left;
+    padding: 10px 30px;
+    font-size: middle;
+    font-weight: bold;
+    color: #b7b7b7;
+    border: 3px solid #b7b7b7;
+    background-color: white;
+    width: fit-content;
+  }
+
+  .button_block {
+    margin-top: 50px;
+  }
+
+  .popup_block {
+    background-color: white;
+    margin-top: -10%;
+    width: 40%;
+    height: auto;
+  }
+
+  .popup_body {
+    padding: 30px 50px 100px 50px;
+  }
+
+  .popup_del {
+    float: right;
+  }
+
+  .text3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  #search_user {
+    padding: 10px 15% 10px 10px;
+    margin-bottom: 30px;
+  }
+
+  .search_icon {
+    margin-left: -50px;
+  }
+
+  .select_1 {
+    padding: 10px 50% 10px 10px;
+  }
+
+</style>
+<body>
+  <div class="block_top">
+    <!-- <span class="switch1">My Account</span><span class="switch2">B2B PORTAL</span> -->
+    <a href="/b2bportal/"><span id="b2bportal" class="text2">User Management</span></a><span class="text2_focus"><b>Order Requests</b></span>
+  </div>
+  <div class="block">
+    <p class="title">Order Requests</p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Requestor</th>
+          <th>Status</th>
+          <th>BC Order ID</th>
+        </tr>
+      </thead>
+      <tbody id="requests_table">
+      </tbody>
+    </table>
+    <div>
+      <img src={{cdn 'img/add.png'}} id="new_request"></img><span class="text1">Add New Order Request</span>
+    </div>
+    <!-- <div class="button_block">
+      <button class="save_button">SAVE</button>
+      <button class="cancel_button">CANCEL</button>
+    </div> -->
+  </div>
+  <!-- for javascript use -->
+  <img id="dropdown" style="display:none" src={{cdn 'img/dropdown.png'}} ></img>
+</body>
+
+</html>
+{{/partial}} {{> layout/base}}

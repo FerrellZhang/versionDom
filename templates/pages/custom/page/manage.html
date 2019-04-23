@@ -1,0 +1,798 @@
+{{#partial "page"}}
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<style>
+.class1 {
+  width: 45%;
+  height: 400px;
+  float: left;
+  display: inline-block;
+  margin: 0px 15px;
+  background-color: #ECF2F7;
+}
+
+.class1 p {
+    font-size: 15px;
+}
+
+.center_text {
+  text-align:center;
+}
+
+
+</style>
+<main class="page">
+  <div id="manage">
+    <div class="side-menu">
+      <ul class="menu-list">
+        <li class="item">Orders
+          <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard-arrow-up"></use>
+                        </svg>
+                    </i>
+          <ul class="child-list">
+            <li><a href="#quickOrder">- Quick Order</a></li>
+            <li><a href="#myOrders">- My Order</a></li>
+            <li><a href="#">- Subscribed Products</a></li>
+            <li><a href="#">- Backordered Products</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a id="dashboard_nav" href="#dashboard">Dashboard</a></li>
+        <li id="supplyLists_nav" class="item">Supply Lists
+          <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard-arrow-up"></use>
+                        </svg>
+                    </i>
+          <ul class="child-list">
+            <li><a id="show_supply_lists" href="#supplyLists">- Supply Lists</a></li>
+            <li><a id="show_quote_lists" href="#quotes">- Quote</a></li>
+          </ul>
+        </li>
+        <li id="account_nav" class="item">Account Settings
+          <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-keyboard-arrow-up"></use>
+                        </svg>
+                    </i>
+          <ul class="child-list">
+            <li id="myaccount_nav"><a href="#myAccount">- My Account</a></li>
+            <li class="admin_user_show"><a href="#addUser">- Add User</a></li>
+            <li id="manageUsers_nav" class="admin_user_show"><a href="#manageUsers">- Manage Users</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Manage Payment Options</a></li>
+      </ul>
+    </div>
+
+    <!-- dashboard -->
+    <div class="content" id="dashboard">
+      <div class="mydashboard">
+        <h1 class="page-heading"><span>Dashboard</span></h1>
+        <div class="class1">
+          <p class="center_text">Company Information</p>
+          <p>Company name:<span id="company_name"></span></p>
+          <p>Address:<span id="company_address"></span></p>
+          <p>Phone Number:<span id="company_phone"></span></p>
+          <p>Email:<span id="company_email"></span></p>
+        </div>
+        <div class="class1">
+          <img src="{{cdn 'img/chart.png'}}">
+        </div>
+      </div>
+      <hr>
+      <div class="quicklinks">
+        <div style="width:25%; float:left;">
+          <img src="{{cdn 'img/recent_orders.png'}}">
+          <p class="center_text">Recent Orders</p>
+        </div>
+        <div style="width:25%; float:left;">
+          <img id="active_quotes" src="{{cdn 'img/active_quotes.png'}}">
+          <p class="center_text">Active Quotes</p>
+        </div>
+        <div style="width:25%; float:left;">
+          <img src="{{cdn 'img/quick_order.png'}}">
+          <p class="center_text">Quick Order</p>
+        </div>
+        <div style="width:25%; float:left;">
+          <img src="{{cdn 'img/invoices.png'}}">
+          <p class="center_text">Invoices</p>
+        </div>
+      </div>
+      <hr>
+      <div>
+        <table id="supply_lists_table" class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Product Skus</th>
+              <th>Create Date</th>
+              <th class="admin_user_show">Edit</th>
+              <th>Quote</th>
+            </tr>
+          </thead>
+          <tbody class="supply_lists_tbody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--my account-->
+    <div class="content" id="myAccount">
+      <h1 class="page-heading"><span>My Account</span></h1>
+      <form id="myAccount_form" data-contact-form="" class="form">
+        <div class="form-row form-row--half">
+          <div class="form-field">
+            <label class="form-label">Name</label>
+            <input class="form-input" type="text" id="myAccount_name" value="{{customer.name}} " customerId="{{customer.id}}" readonly>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="text" id="myAccount_email" value="{{customer.email}}" readonly>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">Phone</label>
+            <input class="form-input" type="text" id="myAccount_phone" value="{{customer.phone}}" readonly>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">User Type</label>
+            <input class="form-input" type="text" id="myAccount_type" readonly>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!--add user-->
+    <div class="content" id="addUser">
+      <h1 class="page-heading"><span>add user</span></h1>
+      <!-- <form id="addUser_form" data-contact-form="" class="form" action="" method="post">
+        <div class="form-row form-row--half">
+          <div class="form-field">
+            <label class="form-label" for="contact_fullname">First Name</label>
+            <input class="form-input" type="text" id="contact_fullname" name="contact_fullname" value="">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="contact_lastname">Last Name</label>
+            <input class="form-input" type="text" id="contact_lastname" name="contact_fullname" value="">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="contact_email">Email Address
+                             <small>Required</small>
+                         </label>
+            <input class="form-input" type="text" id="contact_email" name="contact_email" value="">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="contact_phone">Phone Number</label>
+            <input class="form-input" type="text" id="contact_phone" name="contact_phone" value="">
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="contact_select">Security Level
+                             <small>Required</small>
+                         </label>
+            <select class="form-input" name="" id="contact_select">
+                             <option value="a">a</option>
+                             <option value="b">b</option>
+                             <option value="c">c</option>
+                         </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <input class="button button--primary" type="submit" value="save">
+          <input class="button button--primary" type="reset" value="cancel">
+        </div>
+      </form> -->
+      <form id="addUser_form" data-contact-form="" class="form" action="" method="post">
+        <div class="form-row form-row--half">
+          <div class="form-field">
+            <label class="form-label" for="contact_email">Email Address
+                             <small>Required</small>
+                         </label>
+            <input class="form-input" type="text" id="contact_email" name="contact_email" value="">
+          </div>
+        </div>
+        <div class="form-actions">
+          <input id="add_user_save" class="button button--primary" type="button" value="save">
+          <input class="button button--primary" type="reset" value="cancel">
+        </div>
+      </form>
+    </div>
+
+    <!--manage users-->
+    <div class="content" id="manageUsers">
+      <h1 class="page-heading"><span>manage users</span></h1>
+      <label class="form-label" id="myAccount_company_name"></label>
+      <table id="user_lists_table" class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>User Type</th>
+            <th>Email</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="user_lists_tbody">
+        </tbody>
+      </table>
+    </div>
+
+    <!--manage user-->
+    <div class="content" id="manageUser">
+      <h1 class="page-heading"><span>Manage User</span></h1>
+      <table class="tbl selectTbl">
+        <thead>
+          <tr>
+            <td>name</td>
+            <td>value</td>
+            <td class="btn"></td>
+          </tr>
+        </thead>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+        <tr class="is-active">
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!--supply lists-->
+    <div class="content" id="supplyLists">
+      <h1 class="page-heading"><span>Supply Lists</span></h1>
+      <table id="supply_lists_table" class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Product Skus</th>
+            <th>Create Date</th>
+            <th class="admin_user_show">Edit</th>
+            <th>Quote</th>
+          </tr>
+        </thead>
+        <tbody class="supply_lists_tbody">
+        </tbody>
+      </table>
+      <button id="create_supply_list" class="admin_user_show button button--primary">Create Supply List</button>
+    </div>
+
+    <!--create supply list-->
+    <div class="content" id="create_supplyList">
+      <h1 class="page-heading"><span>Create Supply List</span></h1>
+
+      <form id="supply_lists_form" data-contact-form="" class="form">
+        <div class="form-row form-row--half">
+          <div class="form-field">
+            <label class="form-label">Name:</label>
+            <input class="form-input" id="supply_list_name" type="text">
+          </div>
+          <div class="form-field">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Product Sku Search:</label>
+            <input  class="form-input" id="product" type="text">
+            <br>
+            <button id="add_product" type="button" class="button">Add</button>
+            <!-- <button id="del_product" type="button" class="button">Delete</button> -->
+          </div>
+          <!-- <div class="form-field">
+            <label class="form-label">Product Sku Lists:</label>
+            <textarea id="product_skus" style="width:100%; min-height:100px" readonly></textarea>
+          </div> -->
+          <table id="skus_table" class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Product Skus</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="skus_table_tbody">
+            </tbody>
+          </table>
+        </div>
+        <div class="form-actions">
+          <input id="save_supplyList" class="button button--primary" type="button" value="save">
+          <input id="cancel_supplyList" class="button button--primary" type="reset" value="cancel">
+        </div>
+      </form>
+    </div>
+
+    <!--create quote-->
+    <div class="content" id="create_quote">
+      <h1 class="page-heading"><span>Create Quote</span></h1>
+      <p><label class="form-label" id="quote_supply_list_name"></label></p>
+      <label class="form-label">Product Skus:</label>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product SKU</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody id="product_skus_tbody">
+        </tbody>
+      </table>
+      <div class="form-actions">
+        <input id="save_quote" class="button button--primary" type="button" value="save">
+        <input id="cancel_quote" class="button button--primary" type="reset" value="cancel">
+      </div>
+    </div>
+
+    <!--quote lists-->
+    <div class="content" id="quotes">
+      <h1 class="page-heading"><span>Quote Lists</span></h1>
+      <table id="quote_lists_table" class="table">
+        <thead>
+          <tr>
+            <th>Supply List Name</th>
+            <th>UserId</th>
+            <th>Modify Date</th>
+            <th>Show Quote</th>
+          </tr>
+        </thead>
+        <tbody id="quote_lists_tbody">
+        </tbody>
+      </table>
+    </div>
+
+    <!--show quote-->
+    <div class="content" id="show_quote">
+      <h1 class="page-heading"><span>Show QUote</span></h1>
+      <table id="products_table" class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sku</th>
+            <th>Product Description</th>
+            <th>Item Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="products_table_tbody">
+        </tbody>
+      </table>
+      <div class="form-actions">
+        <input id="add_to_cart" class="button button--primary" type="button" value="Add to Cart">
+        <input id="show_quote_cancel" class="button button--primary" type="button" value="Back">
+      </div>
+    </div>
+
+    <!--new quote-->
+    <div class="content" id="newRequisitions">
+      <h1 class="page-heading"><span>New Requisitions</span></h1>
+      <table class="tbl selectTbl requisitions">
+        <thead>
+          <tr>
+            <td></td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td class="btn"></td>
+          </tr>
+        </thead>
+        <tr>
+          <td>value</td>
+          <td>value</td>
+          <td>value</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td>name</td>
+          <td>value</td>
+          <td class="btn">
+            <button>X</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!--My Orders-->
+    <div class="content" id="myOrders">
+      <h1 class="page-heading"><span>My Orders</span></h1>
+      <table class="tbl MyOrders">
+        <thead>
+          <tr>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tr>
+          <td>value</td>
+          <td>value</td>
+          <td>value</td>
+          <td>value</td>
+          <td>value</td>
+          <td class="links"><a href="#">View Order</a>|<a href="#">Reorder</a></td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td>name</td>
+          <td>value</td>
+          <td>value</td>
+          <td class="links"><a href="#">View Order</a>|<a href="#">Reorder</a></td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td>name</td>
+          <td>value</td>
+          <td>value</td>
+          <td class="links"><a href="#">View Order</a>|<a href="#">Reorder</a></td>
+        </tr>
+        <tr>
+          <td>name</td>
+          <td>value</td>
+          <td>name</td>
+          <td>value</td>
+          <td>value</td>
+          <td class="links"><a href="#">View Order</a>|<a href="#">Reorder</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <!--Supply Request-->
+    <div class="content" id="supplyRequest">
+      <h1 class="page-heading"><span>Supply Request</span></h1>
+      <table class="tbl Request">
+        <thead>
+          <tr>
+            <td></td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td class="removeBtn"><a href="">remove</a></td>
+        </tr>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td class="removeBtn"><a href="">remove</a></td>
+        </tr>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td class="removeBtn"><a href="">remove</a></td>
+        </tr>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td class="removeBtn"><a href="">remove</a></td>
+        </tr>
+      </table>
+      <div class="controlContent">
+        <div class="form-actions">
+          <input class="button button--primary add" type="button" value="+">
+          <input class="button button--primary" type="button" value="Move to Cart">
+          <input class="button button--primary" type="button" value="Delete">
+          <span class="totalPrice">$1234.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!--Quick Order-->
+    <div class="content" id="quickOrder">
+      <h1 class="page-heading"><span>Quick Order</span></h1>
+      <div class="elText">
+        <h4 class="elTitle">Upload File</h4>
+        <div class="form-actions">
+          <form action="">
+            <label for="uploadFile" class="button button--primary">Choose File</label>
+            <input id="uploadFile" style="display: none;" class="button button--primary" type="file" value="">
+            <input class="button button--primary" type="reset" value="Reset">
+          </form>
+        </div>
+        <p>you .csv file should include "sku" and "Qty" columns. <a href="">Download template</a></p>
+        <h4 class="elTitle">build Order</h4>
+        <table class="tbl Request">
+          <thead>
+            <tr>
+              <td>name</td>
+              <td>name</td>
+              <td>name</td>
+              <td>name</td>
+              <td>name</td>
+              <td>name</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              <input type="text">
+            </td>
+            <td><input type="number" value="1" min="1"></td>
+            <td>
+              <select name="" id="">
+                                <option>A</option>
+                                <option>Box</option>
+                                <option>C</option>
+                            </select>
+            </td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td class="removeBtn"><a href="">remove</a></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text">
+            </td>
+            <td><input type="number" value="1" min="1"></td>
+            <td>
+              <select name="" id="">
+                                <option>A</option>
+                                <option>Box</option>
+                                <option>C</option>
+                            </select>
+            </td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td class="removeBtn"><a href="">remove</a></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text">
+            </td>
+            <td><input type="number" value="1" min="1"></td>
+            <td>
+              <select name="" id="">
+                                <option>A</option>
+                                <option>Box</option>
+                                <option>C</option>
+                            </select>
+            </td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td class="removeBtn"><a href="">remove</a></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text">
+            </td>
+            <td><input type="number" value="1" min="1"></td>
+            <td>
+              <select name="" id="">
+                                <option>A</option>
+                                <option>Box</option>
+                                <option>C</option>
+                            </select>
+            </td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td class="removeBtn"><a href="">remove</a></td>
+          </tr>
+        </table>
+        <div class="controlContent">
+          <div class="form-actions">
+            <input class="button button--primary add" type="button" value="+">
+            <input class="button button--primary" type="button" value="Move to Cart">
+            <input class="button button--primary" type="button" value="Delete">
+            <span class="totalPrice">$1234.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--new supply request-->
+    <div class="content" id="newSupplyRequest">
+      <h1 class="page-heading"><span>New Supply Request</span></h1>
+      <div class="elText">
+        <h4 class="elTitle">Build Order</h4>
+      </div>
+      <table class="tbl Request">
+        <thead>
+          <tr>
+            <td></td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+            <td>name</td>
+          </tr>
+        </thead>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+        </tr>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+        </tr>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+        </tr>
+        <tr>
+          <td><img src="https://cdn6.bigcommerce.com/s-br51rdu2of/images/stencil/500x659/products/104/381/Image-copy-3__73512.1501148610.jpg?c=2"></td>
+          <td><input type="number" value="1" min="1"></td>
+          <td>
+            <select name="" id="">
+                            <option>A</option>
+                            <option>Box</option>
+                            <option>C</option>
+                        </select>
+          </td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+          <td>name</td>
+        </tr>
+      </table>
+      <div class="newSupplyPrice">
+        <span class="totalPrice">$1234.00</span>
+      </div>
+      <div class="elText">
+        <h4 class="elTitle">Submit Order</h4>
+        <form action="">
+          <div class="sendContent">
+            send to：<select name="" id="">
+                            <option value="a">a</option>
+                            <option value="b">b</option>
+                            <option value="c">c</option>
+                        </select>
+          </div>
+          <div class="form-actions">
+            <input class="button button--primary" type="submit" value="Submit Request">
+            <input class="button button--primary" type="reset" value="cancel">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content page-content--centered">
+    {{#replace '%%Syndicate%%' page.content}} {{> components/page/rss_feed}} {{else}}
+    <p>{{{page.content}}}</p>
+    {{/replace}}
+  </div>
+</main>
+
+{{/partial}} {{> layout/base}}

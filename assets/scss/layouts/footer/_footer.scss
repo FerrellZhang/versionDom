@@ -1,0 +1,302 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+//
+// -----------------------------------------------------------------------------
+
+.footer {
+    @include clearfix;
+    background-color: $footer-background;
+    border-top: container("border");
+    padding: 30px 0 0;
+    color: #fff;
+    font-family: Museosans, Helvetica, Arial;
+    font-weight: 500;
+
+
+    @include breakpoint("medium") {
+        padding: 50px 0 0;
+    }
+
+    &:before {
+        clear: both;
+    }
+}
+
+.footer-left {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        width: width("9/12");
+    }
+
+}
+
+.footer-right {
+    @include grid-column(12);
+    text-align: center;
+
+    @include breakpoint("medium") {
+        width: width("3/12");
+    }
+
+}
+
+.footer-logo {
+    margin-bottom:30px;
+}
+
+.footer-info-col--newsletter {
+    .footer-info-heading {
+        @include breakpoint("medium") {
+            //font-size: 27px;
+            margin-bottom: 10px;
+        }
+    }
+    .form {
+        margin-bottom: 10px;
+
+        @include breakpoint("medium") {
+            max-width: 600px;
+        }
+        
+    }
+    .form-field {
+        margin-bottom: 0;
+    }
+    .form-input {
+        color: #fff;
+        border-color: #fff;
+        background-color: transparent;
+        border-width: 2px;
+
+        @include breakpoint("medium") {
+            border-right: 0;
+        }
+
+        &::-webkit-input-placeholder { 
+            color: stencilColor("color-white");
+            font-style: italic;
+        }
+        &::-moz-placeholder { 
+            color: stencilColor("color-white");
+            font-style: italic;
+        }
+        &:-ms-input-placeholder { 
+            color: stencilColor("color-white");
+            font-style: italic;
+        }
+    }
+
+    .button {
+        border-width: 2px;
+        margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+
+
+
+        &:hover {
+            background-color: #fff;
+            border-color: #fff;
+            color: stencilColor("color-blue");
+        }
+    }
+
+}
+.footer-info {
+    @include grid-row($behavior: nest);
+    font-size: 0; // 1
+    //max-width: 800px;
+}
+
+.footer-info-col {
+    @include grid-column(12);
+    color: #fff;
+    display: inline-block;
+    float: none;
+    font-size: fontSize("base"); // 2
+    margin-bottom: spacing("double");
+    text-align: center;
+    vertical-align: top;
+
+    @include breakpoint("small") {
+        text-align: left;
+        width: width("6/12");
+    }
+
+    @include breakpoint("medium") {
+        width: width("3/12");
+    }
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.footer-info-col--small {
+    @include breakpoint("medium") {
+        width: width("2/12");
+    }
+}
+.footer-info-col--info {
+    @include breakpoint("medium") {
+        width: width("4/12");
+    }
+}
+
+.footer-info-col--newsletter {
+    @include breakpoint("medium") {
+        width: width("4/12");
+    }
+}
+
+.footer-copyright-info {
+    text-align: center;
+
+}
+
+.footer-info-col--left {
+    @include breakpoint("small") {
+        padding: 0;
+    }
+}
+
+.footer-info-col--right {
+    @include breakpoint("small") {
+        left: 50%;
+        position: inherit;
+    }
+
+    @include breakpoint("medium") {
+        left: 0;
+        padding: 0;
+        text-align: right;
+    }
+}
+
+
+// Content
+// -----------------------------------------------------------------------------
+
+.footer-info-heading {
+    color: $footer-heading-fontColor;
+    font-size: fontSize("base");
+    text-transform: inherit;
+    font-weight: 800;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 0;
+    letter-spacing: 0.05em;
+    font-family: Museosans;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.footer-info-list {
+    list-style: none;
+    margin-left: 0;
+    font-family: Museosans;
+    font-weight: 500;
+
+    span {
+        color: stencilColor("color-white");
+        text-decoration: none;
+        display: inline-block;
+        line-height: 30px;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+    }
+
+    a {
+        color: stencilColor("color-white");
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        line-height: 30px;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-red");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.footer-copyright {
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+
+    > .powered-by {
+        color: stencilColor("color-textSecondary");
+        font-size: fontSize("tiny");
+        margin: 0;
+    }
+
+    a {
+        color: stencilColor("color-textSecondary");
+        text-decoration: none;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+
+.footer-payment-icons {
+    height: remCalc(40);
+    margin-top: spacing("single");
+
+    @include breakpoint("medium") {
+        margin-top: spacing("double");
+    }
+
+    .footer-payment-icon {
+        height: 100%;
+        margin: spacing("quarter");
+        vertical-align: middle;
+        width: remCalc(50);
+    }
+
+    svg {
+        fill: stencilColor("icon-color");
+    }
+}
+
+.footer-geotrust-ssl-seal {
+    @include breakpoint("small") {
+        bottom: 0;
+        position: absolute;
+        right: 16px;
+    }
+
+    table {
+        margin: auto;
+    }
+}
+
+.footer-bottom {
+    padding: 16px 0;
+    background-color: stencilColor("color-yellow");
+
+}

@@ -1,0 +1,57 @@
+@import "clear-sans";
+
+$fonts: $fontFamily-sans $fontFamily-serif $fontFamily-mono $fontFamily-headings $fontFamily-hero;
+
+@if contains($fonts, "'Clear Sans', sans-serif") {
+    @include clear-sans;
+}
+
+@font-face {
+    font-family: 'Museosans';
+    src: url('../fonts/museosans/museosans_500-webfont.eot');
+    src: url('../fonts/museosans/museosans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/museosans/museosans_500-webfont.woff2') format('woff2'),
+         url('../fonts/museosans/museosans_500-webfont.woff') format('woff'),
+         url('../fonts/museosans/museosans_500-webfont.svg#Museosans') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Museosanscyrl';
+    src: url('../fonts/museosans/museosanscyrl_bold-webfont.eot');
+    src: url('../fonts/museosans/museosanscyrl_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/museosans/museosanscyrl_bold-webfont.woff2') format('woff2'),
+         url('../fonts/museosans/museosanscyrl_bold-webfont.woff') format('woff'),
+         url('../fonts/museosans/museosanscyrl_bold-webfont.svg#Museosanscyrl') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome/fontawesome-webfont.eot?v=4.7.0');
+  src: url('../fonts/fontawesome/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), 
+  url('../fonts/fontawesome/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), 
+  url('../fonts/fontawesome/fontawesome-webfont.woff?v=4.7.0') format('woff'), 
+  url('../fonts/fontawesome/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), 
+  url('../fonts/fontawesome/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-user:before {
+    content: "\f007";
+}
+.fa-search:before {
+    content: "\f002";
+}
+.fa-cart:before {
+    content: "\f07a";
+}

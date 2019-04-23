@@ -1,0 +1,46 @@
+{{#partial "page"}}
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<main class="page">
+  <h1 class="page-heading"><span>B2B cart</span></h1>
+  <h4><a href="/manager/requisitions">B2B Manager</a> / Cart</h4>
+  <table id="b2bcart_table" class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="b2bcart_tbody">
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-4">
+      <br>
+      <!-- Discount form -->
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Discount Code">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button">Go!</button>
+        </span>
+      </div>
+    </div>
+    <div class="col-md-8 text-md-right mt-3 mt-md-0">
+      <div>
+        <h4 class="font-weight-light" id="subtotal"></h4>
+        <h4 class="font-weight-light" id="discount"></h4>
+        <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0">
+        <h4 id="total"></h4>
+        <hr class="my-3 w-50 ml-0 ml-md-auto mr-md-0">
+      </div>
+      <!-- Proceed to checkout -->
+      <button id="cancel" class="btn btn-secondary btn-rounded btn-lg">Cancel Shopping</button>
+      <button id="checkout" class="btn btn-primary btn-rounded btn-lg">Proceed To Checkout</button>
+    </div>
+  </div>
+</main>
+
+{{/partial}} {{> layout/base}}

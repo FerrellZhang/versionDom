@@ -1,0 +1,231 @@
+{{#partial "page"}}
+
+<!DOCTYPE html>
+<html>
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script> -->
+<style>
+  /*.body .container {
+      width: 70%;
+      max-width: 100%;
+  }*/
+
+  .block_top {
+    margin-top: 20px;
+    padding: 50px 50px 0px 50px;
+  }
+
+  .switch1 {
+    font-style: italic;
+    color: #898989;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid #898989;
+  }
+
+  .switch2 {
+    background-color: #F7941E;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid #898989;
+  }
+
+  .text2 {
+    float: right;
+    margin: 10px 20px;
+    font-size: 18px;
+  }
+
+  .text2_focus {
+    float: right;
+    margin: 10px 20px;
+    font-size: 18px;
+    text-decoration: underline;
+  }
+
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+
+  .block {
+    padding: 50px;
+  }
+
+  .block thead {
+    background-color: #F7941E;
+    color: white;
+  }
+
+  .table {
+    border-bottom: 3px solid #F7941E;
+  }
+
+  .table tr td {
+    border: none !important;
+  }
+
+  .text1 {
+    margin-left: 10px;
+  }
+
+  .save_button {
+    float: left;
+    padding: 10px 30px;
+    font-size: middle;
+    font-weight: bold;
+    color: White;
+    border: 3px solid #F7941E;
+    background-color: #F7941E;
+    width: fit-content;
+    margin-right: 20px;
+  }
+
+  .cancel_button {
+    float: left;
+    padding: 10px 30px;
+    font-size: middle;
+    font-weight: bold;
+    color: #b7b7b7;
+    border: 3px solid #b7b7b7;
+    background-color: white;
+    width: fit-content;
+  }
+
+  .button_block {
+    margin-top: 300px;
+  }
+
+  .popup_block {
+    background-color: white;
+    margin-top: -10%;
+    width: 40%;
+    height: auto;
+  }
+
+  .popup_body {
+    padding: 30px 50px 100px 50px;
+  }
+
+  .popup_del {
+    float: right;
+  }
+
+  .text3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .search_icon {
+    margin-left: -50px;
+  }
+
+  .select_1 {
+    padding: 10px 50% 10px 10px;
+  }
+
+  .search {
+    margin-bottom: 20px;
+  }
+
+  .left_div {
+    float: left;
+  }
+
+  .right_div {
+    float: right;
+  }
+
+  .class1 {
+    text-align: right;
+    float: left;
+    margin-right: 20px;
+    font-weight: bold;
+  }
+
+  .class2 {
+    text-align: left;
+    float: right;
+    margin-right: 50px;
+  }
+
+  .right_button {
+    float: right;
+  }
+
+  .bottom_field {
+    margin-top: 50px;
+  }
+
+  #path {
+    color: #F7941E;
+  }
+
+  table tr td {
+    text-align: center;
+  }
+
+  .img_col {
+    width: 40px;
+  }
+
+</style>
+<body>
+  <div class="block_top">
+    <!-- <span class="switch1">My Account</span><span class="switch2">B2B PORTAL</span> -->
+    <a href="/b2bportal/"><span id="b2bportal" class="text2">User Management</span></a><a href="/orderrequests/"><span id="orderrequests" class="text2_focus"><b>Order Requests</b></span></a>
+  </div>
+  <div class="block">
+    <p class="title"><a href="/orderrequests/">Order Requests</a> /<span id="path"></span></p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>SKU</th>
+          <th>Name</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th class="img_col"></th>
+        </tr>
+      </thead>
+      <tbody id="request_table">
+      </tbody>
+    </table>
+    <div class="bottom_field">
+      <div id="add_product_line" class="left_div">
+        <!-- <div class="search">
+          <span>Search SKU: </span>
+          <input id="search_sku" size="20"></input>
+        </div> -->
+        <img id="add" src={{cdn 'img/add.png'}}></img><span class="text1">Add Product Line</span>
+      </div>
+      <div class="right_div">
+        <div class="class1">
+          <p>Subtotal:</p>
+          <p>Estimated Tax:</p>
+          <p>Estimated Shipping:</p>
+          <p>Total:</p>
+        </div>
+        <div class="class2">
+          <p id="subtotal"></p>
+          <p id="tax"></p>
+          <p id="ship"></p>
+          <p id="total"></p>
+        </div>
+      </div>
+    </div>
+    <div class="button_block">
+      <button id="save" class="save_button">SAVE</button>
+      <button id="cancel" class="cancel_button">CANCEL</button>
+      <button id="add_to_cart" class="save_button right_button">ADD TO CART</button>
+    </div>
+  </div>
+  <!-- for javascript use -->
+  <img id="del_icon" style="display:none" src={{cdn 'img/del_1.png'}} ></img>
+</body>
+
+</html>
+{{/partial}} {{> layout/base}}
